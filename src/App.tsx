@@ -12,26 +12,50 @@ import { ConnectWithUs } from './components/ConnectWithUs';
 import { FAQsAccordion } from './components/FAQsAccordion';
 import { ContactForm } from './components/ContactForm';
 import { Footer } from './components/Footer';
+import { ThankYou } from './components/ThankYou';
 
 function App() {
   const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
+  const [showThankYou, setShowThankYou] = useState(false);
+
+  const handleFormSuccess = () => {
+    setShowThankYou(true);
+    setIsQuoteModalOpen(false);
+  };
+
+  const handleCloseThankYou = () => {
+    setShowThankYou(false);
+  };
+
+  if (showThankYou) {
+    return (
+      <div className="min-h-screen">
+        <TopBar onQuoteClick={() => setIsQuoteModalOpen(true)} />
+        <ThankYou onClose={handleCloseThankYou} />
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen">
       <TopBar onQuoteClick={() => setIsQuoteModalOpen(true)} />
-      <QuoteModal isOpen={isQuoteModalOpen} onClose={() => setIsQuoteModalOpen(false)} />
+      <QuoteModal
+        isOpen={isQuoteModalOpen}
+        onClose={() => setIsQuoteModalOpen(false)}
+        onSuccess={handleFormSuccess}
+      />
       <FloatingConnectIcons />
 
       <div className="pt-20">
-        <Hero />
-        <Portfolio />
+        <Hero onFormSuccess={handleFormSuccess} />
+        <Portfolio onConsultationRequest={handleFormSuccess} />
         <Statistics />
         <ValuePropAccordion />
         <Testimonials />
         <PartnerLogos />
         <ConnectWithUs />
         <FAQsAccordion />
-        <ContactForm />
+        <ContactForm onSuccess={handleFormSuccess} />
         <Footer />
       </div>
     </div>

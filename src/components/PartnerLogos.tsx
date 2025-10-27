@@ -13,7 +13,7 @@ export function PartnerLogos() {
   ];
 
   return (
-    <section className="bg-[#F8F8F8] py-20">
+    <section className="bg-gradient-to-b from-gray-50 to-white py-20">
       <div className="mx-auto max-w-7xl px-6">
         <div
           ref={ref}

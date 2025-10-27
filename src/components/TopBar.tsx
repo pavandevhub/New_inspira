@@ -5,12 +5,13 @@ interface TopBarProps {
 export function TopBar({ onQuoteClick }: TopBarProps) {
   return (
     <div className="fixed top-0 left-0 right-0 z-50 bg-white shadow-md">
-      <div className="mx-auto max-w-7xl px-6 py-4 flex items-center justify-between">
+      <div className="mx-auto max-w-7xl px-6 py-3 flex items-center justify-between">
         <div className="flex items-center">
-          <h1 className="text-2xl font-bold">
-            <span className="text-[#FF6633] logo-text">Inspira</span>
-            <span className="text-[#333333] logo-text"> Interiors</span>
-          </h1>
+          <img
+            src="/Inspira Interiors Logo Design (4) .png"
+            alt="Inspira Interiors Logo"
+            className="h-14 w-auto object-contain"
+          />
         </div>
 
         <button

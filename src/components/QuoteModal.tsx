@@ -5,6 +5,7 @@ import { supabase } from '../lib/supabase';
 interface QuoteModalProps {
   isOpen: boolean;
   onClose: () => void;
+  onSuccess: () => void;
 }
 
 interface QuoteFormData {
@@ -12,7 +13,7 @@ interface QuoteFormData {
   phone: string;
 }
 
-export function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
+export function QuoteModal({ isOpen, onClose, onSuccess }: QuoteModalProps) {
   const [formData, setFormData] = useState<QuoteFormData>({
     name: '',
     phone: '',
@@ -66,13 +67,9 @@ export function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
 
       if (error) throw error;
 
-      setSubmitStatus('success');
       setFormData({ name: '', phone: '' });
-
-      setTimeout(() => {
-        onClose();
-        setSubmitStatus('idle');
-      }, 2000);
+      setSubmitStatus('idle');
+      onSuccess();
     } catch (error) {
       console.error('Error submitting form:', error);
     } finally {

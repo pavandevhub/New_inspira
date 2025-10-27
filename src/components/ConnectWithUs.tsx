@@ -6,7 +6,7 @@ export function ConnectWithUs() {
   const whatsappMessage = encodeURIComponent('Hi! I would like to discuss my interior design project.');
 
   return (
-    <section className="bg-[#F8F8F8] py-20">
+    <section className="bg-gradient-to-b from-white to-gray-100 py-20">
       <div className="mx-auto max-w-4xl px-6">
         <div
           ref={ref}

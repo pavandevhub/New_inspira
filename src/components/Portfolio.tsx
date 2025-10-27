@@ -1,7 +1,11 @@
 import { ProjectCard } from './ProjectCard';
 import { projects } from '../data/projects';
 
-export function Portfolio() {
+interface PortfolioProps {
+  onConsultationRequest: () => void;
+}
+
+export function Portfolio({ onConsultationRequest }: PortfolioProps) {
   return (
     <section id="portfolio" className="bg-[#F8F8F8] py-20">
       <div className="mx-auto max-w-7xl px-6">
@@ -16,7 +20,12 @@ export function Portfolio() {
 
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {projects.map((project, index) => (
-            <ProjectCard key={project.id} project={project} index={index} />
+            <ProjectCard
+              key={project.id}
+              project={project}
+              index={index}
+              onConsultationRequest={onConsultationRequest}
+            />
           ))}
         </div>
       </div>

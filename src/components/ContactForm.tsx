@@ -4,7 +4,11 @@ import { supabase } from '../lib/supabase';
 import { ContactFormData } from '../types';
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
 
-export function ContactForm() {
+interface ContactFormProps {
+  onSuccess: () => void;
+}
+
+export function ContactForm({ onSuccess }: ContactFormProps) {
   const [formData, setFormData] = useState<ContactFormData>({
     name: '',
     email: '',
@@ -74,7 +78,6 @@ export function ContactForm() {
 
       if (error) throw error;
 
-      setSubmitStatus('success');
       setFormData({
         name: '',
         email: '',
@@ -82,8 +85,8 @@ export function ContactForm() {
         projectType: '',
         message: '',
       });
-
-      setTimeout(() => setSubmitStatus('idle'), 5000);
+      setSubmitStatus('idle');
+      onSuccess();
     } catch (error) {
       console.error('Error submitting form:', error);
       setSubmitStatus('error');

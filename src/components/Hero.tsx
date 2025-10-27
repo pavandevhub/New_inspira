@@ -1,8 +1,13 @@
 import { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { heroImages } from '../data/heroImages';
+import { HeroForm } from './HeroForm';
 
-export function Hero() {
+interface HeroProps {
+  onFormSuccess: () => void;
+}
+
+export function Hero({ onFormSuccess }: HeroProps) {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 
@@ -55,19 +60,27 @@ export function Hero() {
       </div>
 
       <div className="absolute inset-0 flex items-center justify-center">
-        <div className="max-w-4xl px-6 text-center text-white animate-fade-in">
-          <h1 className="mb-6 text-5xl font-bold leading-tight md:text-6xl lg:text-7xl">
-            Transform Your Space.<br />Live Your Dream.
-          </h1>
-          <p className="mb-8 text-xl md:text-2xl text-white/90">
-            Creating stunning interiors that reflect your unique style
-          </p>
-          <a
-            href="#portfolio"
-            className="inline-block bg-[#FF6633] px-8 py-4 text-lg font-semibold text-white transition-all duration-300 hover:bg-[#FF6633]/90 hover:scale-105 hover:shadow-lg"
-          >
-            Explore Our Portfolio
-          </a>
+        <div className="max-w-7xl w-full px-6">
+          <div className="grid lg:grid-cols-2 gap-8 items-center">
+            <div className="text-white animate-fade-in">
+              <h1 className="mb-6 text-4xl font-bold leading-tight md:text-5xl lg:text-6xl">
+                Transform Your Space.<br />Live Your Dream.
+              </h1>
+              <p className="mb-8 text-lg md:text-xl text-white/90">
+                Creating stunning interiors that reflect your unique style
+              </p>
+              <a
+                href="#portfolio"
+                className="inline-block bg-[#FF6633] px-8 py-4 text-lg font-semibold text-white transition-all duration-300 hover:bg-[#FF6633]/90 hover:scale-105 hover:shadow-lg rounded-lg"
+              >
+                Explore Our Portfolio
+              </a>
+            </div>
+
+            <div className="hidden lg:flex justify-end animate-fade-in" style={{ animationDelay: '200ms' }}>
+              <HeroForm onSuccess={onFormSuccess} />
+            </div>
+          </div>
         </div>
       </div>
 

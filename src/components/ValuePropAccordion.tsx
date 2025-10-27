@@ -12,7 +12,7 @@ export function ValuePropAccordion() {
   };
 
   return (
-    <section className="bg-white py-20">
+    <section className="bg-gradient-to-b from-gray-50 to-white py-20">
       <div className="mx-auto max-w-5xl px-6">
         <div
           ref={ref}

@@ -19,10 +19,11 @@ export function Footer() {
       <div className="mx-auto max-w-7xl px-6 py-12">
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           <div>
-            <h3 className="mb-4 text-2xl font-bold">
-              <span className="text-[#FF6633] logo-text">Inspira</span>
-              <span className="text-white logo-text"> Interiors</span>
-            </h3>
+            <img
+              src="/Inspira Interiors Logo Design (3) .png"
+              alt="Inspira Interiors Logo"
+              className="h-16 w-auto object-contain mb-4"
+            />
             <p className="text-gray-300">
               Creating stunning interior spaces that inspire and delight. Your dream space is our passion.
             </p>

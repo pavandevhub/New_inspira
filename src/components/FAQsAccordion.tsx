@@ -12,8 +12,8 @@ export function FAQsAccordion() {
   };
 
   return (
-    <section className="bg-white py-20">
-      <div className="mx-auto max-w-4xl px-6">
+    <section className="bg-gradient-to-b from-gray-50 to-white py-20">
+      <div className="mx-auto max-w-6xl px-6">
         <div
           ref={ref}
           className={`mb-12 text-center transition-all duration-700 ${
@@ -28,42 +28,65 @@ export function FAQsAccordion() {
           </p>
         </div>
 
-        <div className="space-y-4">
-          {faqs.map((faq, index) => (
-            <div
-              key={faq.id}
-              className={`border-2 border-gray-200 bg-white overflow-hidden transition-all duration-700 ${
-                isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
-              }`}
-              style={{ transitionDelay: `${index * 50}ms` }}
-            >
-              <button
-                onClick={() => toggleFAQ(index)}
-                className="flex w-full items-start justify-between gap-4 p-6 text-left transition-colors duration-300 hover:bg-gray-50"
-              >
-                <h3 className="text-lg font-semibold text-[#333333]">
-                  {faq.question}
-                </h3>
-                <div className="flex-shrink-0">
-                  {openIndex === index ? (
-                    <Minus className="h-6 w-6 text-[#FF6633]" />
-                  ) : (
-                    <Plus className="h-6 w-6 text-[#FF6633]" />
-                  )}
-                </div>
-              </button>
-
+        <div className="space-y-6">
+          {faqs.map((faq, index) => {
+            const isEven = index % 2 === 0;
+            return (
               <div
-                className={`overflow-hidden transition-all duration-500 ${
-                  openIndex === index ? 'max-h-96' : 'max-h-0'
+                key={faq.id}
+                className={`grid md:grid-cols-2 gap-6 items-start transition-all duration-700 ${
+                  isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
                 }`}
+                style={{ transitionDelay: `${index * 50}ms` }}
               >
-                <div className="border-t-2 border-gray-200 p-6 pt-4">
-                  <p className="text-gray-700 leading-relaxed">{faq.answer}</p>
+                <div className={`${isEven ? 'md:order-1' : 'md:order-2'}`}>
+                  <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-6 h-full">
+                    <div className="flex items-start gap-3 mb-3">
+                      <div className="flex-shrink-0 w-8 h-8 rounded-full bg-[#FF6633] text-white flex items-center justify-center font-bold text-sm">
+                        Q
+                      </div>
+                      <h3 className="text-lg font-bold text-[#333333] leading-tight">
+                        {faq.question}
+                      </h3>
+                    </div>
+                    <button
+                      onClick={() => toggleFAQ(index)}
+                      className="mt-2 flex items-center gap-2 text-[#FF6633] font-semibold text-sm transition-all duration-300 hover:gap-3"
+                    >
+                      {openIndex === index ? (
+                        <>
+                          <Minus className="h-4 w-4" />
+                          Hide Answer
+                        </>
+                      ) : (
+                        <>
+                          <Plus className="h-4 w-4" />
+                          Show Answer
+                        </>
+                      )}
+                    </button>
+                  </div>
+                </div>
+
+                <div className={`${isEven ? 'md:order-2' : 'md:order-1'}`}>
+                  <div
+                    className={`overflow-hidden transition-all duration-500 ${
+                      openIndex === index ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+                    }`}
+                  >
+                    <div className="bg-white rounded-lg border-2 border-gray-200 p-6">
+                      <div className="flex items-start gap-3">
+                        <div className="flex-shrink-0 w-8 h-8 rounded-full bg-green-500 text-white flex items-center justify-center font-bold text-sm">
+                          A
+                        </div>
+                        <p className="text-gray-700 leading-relaxed">{faq.answer}</p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>

@@ -38,7 +38,7 @@ export function Testimonials() {
   };
 
   return (
-    <section className="bg-white py-20">
+    <section className="bg-gradient-to-b from-white to-gray-50 py-20">
       <div className="mx-auto max-w-7xl px-6">
         <div
           ref={ref}
